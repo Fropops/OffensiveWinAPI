@@ -1,0 +1,10 @@
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\bin\Debug\RunAs.exe.config
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\bin\Debug\RunAs.exe
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\bin\Debug\RunAs.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\bin\Debug\WinAPI.dll
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\bin\Debug\WinAPI.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\obj\Debug\RunAs.csproj.AssemblyReference.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\obj\Debug\RunAs.csproj.CoreCompileInputs.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\obj\Debug\RunAs.csproj.CopyComplete
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\obj\Debug\RunAs.exe
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunAs\obj\Debug\RunAs.pdb

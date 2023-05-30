@@ -1,0 +1,5 @@
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\obj\Debug\WinAPI.csproj.CoreCompileInputs.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\bin\Debug\WinAPI.dll
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\bin\Debug\WinAPI.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\obj\Debug\WinAPI.dll
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\obj\Debug\WinAPI.pdb
