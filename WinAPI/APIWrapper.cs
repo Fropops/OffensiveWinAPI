@@ -11,7 +11,7 @@ namespace WinAPI
 {
     public class APIWrapperConfig
     {
-        public APIAccessType PreferedAccessType { get; set; } = APIAccessType.PInvoke;
+        public APIAccessType PreferedAccessType { get; set; } = APIAccessType.DInvoke;
         public InjectionMethod PreferedInjectionMethod { get; set; } = InjectionMethod.ProcessHollowingWithAPC;
     }
 
@@ -75,9 +75,11 @@ namespace WinAPI
             return output;
         }
 
-        public static void Inject(IntPtr processHandle, IntPtr threadHandle, byte[] shellcode)
+        public static void Inject(IntPtr processHandle, IntPtr threadHandle, byte[] shellcode, InjectionMethod? injectMethod = null)
         {
-            switch (Config.PreferedInjectionMethod)
+            if (injectMethod == null)
+                injectMethod = Config.PreferedInjectionMethod;
+            switch (injectMethod)
             {
                 case InjectionMethod.CreateRemoteThread:
                     if (Config.PreferedAccessType == APIAccessType.PInvoke)

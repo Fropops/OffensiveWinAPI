@@ -44,6 +44,15 @@ namespace WinAPI.PInvoke
            [In] ref STARTUPINFOEX lpStartupInfo,
            out PROCESS_INFORMATION lpProcessInformation);
 
+        [DllImport("advapi32.dll")]
+        public static extern bool LogonUserA(
+          string lpszUsername,
+          string lpszDomain,
+          string lpszPassword,
+          LogonProvider dwLogonType,
+          LogonUserProvider dwLogonProvider,
+          ref IntPtr phToken);
+
         [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern bool CreateProcessWithLogonW(
             string lpUsername,

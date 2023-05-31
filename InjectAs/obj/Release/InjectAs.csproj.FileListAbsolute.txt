@@ -9,3 +9,4 @@ E:\Share\Projects\CSharp\OffensiveWinAPI\InjectAs\obj\Release\InjectAs.csproj.Co
 E:\Share\Projects\CSharp\OffensiveWinAPI\InjectAs\obj\Release\InjectAs.csproj.CopyComplete
 E:\Share\Projects\CSharp\OffensiveWinAPI\InjectAs\obj\Release\InjectAs.exe
 E:\Share\Projects\CSharp\OffensiveWinAPI\InjectAs\obj\Release\InjectAs.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectAs\obj\Release\InjectAs.csproj.AssemblyReference.cache
