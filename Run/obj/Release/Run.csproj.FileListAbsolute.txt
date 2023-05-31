@@ -1,0 +1,9 @@
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\bin\Release\Run.exe.config
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\bin\Release\Run.exe
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\bin\Release\Run.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\bin\Release\WinAPI.dll
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\bin\Release\WinAPI.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\obj\Release\Run.csproj.CoreCompileInputs.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\obj\Release\Run.csproj.CopyComplete
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\obj\Release\Run.exe
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\obj\Release\Run.pdb

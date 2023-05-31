@@ -1,0 +1,10 @@
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\bin\Release\RunToken.exe.config
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\bin\Release\RunToken.exe
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\bin\Release\RunToken.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\bin\Release\WinAPI.dll
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\bin\Release\WinAPI.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\obj\Release\RunToken.csproj.AssemblyReference.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\obj\Release\RunToken.csproj.CoreCompileInputs.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\obj\Release\RunToken.csproj.CopyComplete
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\obj\Release\RunToken.exe
+E:\Share\Projects\CSharp\OffensiveWinAPI\RunToken\obj\Release\RunToken.pdb

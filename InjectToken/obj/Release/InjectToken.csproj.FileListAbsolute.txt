@@ -1,0 +1,12 @@
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\bin\Release\InjectToken.exe.config
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\bin\Release\InjectToken.exe
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\bin\Release\InjectToken.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\bin\Release\WinAPI.dll
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\bin\Release\WinAPI.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\obj\Release\InjectToken.csproj.AssemblyReference.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\obj\Release\InjectToken.Properties.Resources.resources
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\obj\Release\InjectToken.csproj.GenerateResource.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\obj\Release\InjectToken.csproj.CoreCompileInputs.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\obj\Release\InjectToken.csproj.CopyComplete
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\obj\Release\InjectToken.exe
+E:\Share\Projects\CSharp\OffensiveWinAPI\InjectToken\obj\Release\InjectToken.pdb

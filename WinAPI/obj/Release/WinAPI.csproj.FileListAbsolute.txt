@@ -1,0 +1,6 @@
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\bin\Release\WinAPI.dll
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\bin\Release\WinAPI.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\obj\Release\WinAPI.csproj.AssemblyReference.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\obj\Release\WinAPI.csproj.CoreCompileInputs.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\obj\Release\WinAPI.dll
+E:\Share\Projects\CSharp\OffensiveWinAPI\WinAPI\obj\Release\WinAPI.pdb
