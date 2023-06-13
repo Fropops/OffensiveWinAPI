@@ -62,6 +62,42 @@ namespace WinAPI.DInvoke
                [MarshalAs(UnmanagedType.LPWStr)] string lpCurrentDirectory,
                ref STARTUPINFOEX lpStartupInfo,
                out PROCESS_INFORMATION lpProcessInformation);
+
+            #region ServiceManager
+            [UnmanagedFunctionPointer(CallingConvention.StdCall, SetLastError = true)]
+            public delegate IntPtr OpenSCManagerW(
+       [MarshalAs(UnmanagedType.LPWStr)] string machineName,
+       [MarshalAs(UnmanagedType.LPWStr)] string databaseName,
+       SCM_ACCESS_RIGHTS desiredAccess);
+
+            [UnmanagedFunctionPointer(CallingConvention.StdCall, SetLastError = true)]
+            public delegate IntPtr CreateServiceW(
+                IntPtr hSCManager,
+                [MarshalAs(UnmanagedType.LPWStr)] string serviceName,
+                [MarshalAs(UnmanagedType.LPWStr)] string displayName,
+                SERVICE_ACCESS_RIGHTS desiredAccess,
+                SERVICE_TYPE serviceType,
+                START_TYPE startType,
+                ERROR_CONTROL errorControl,
+                [MarshalAs(UnmanagedType.LPWStr)] string binaryPathName,
+                [MarshalAs(UnmanagedType.LPWStr)] string loadOrderGroup,
+                IntPtr tagId,
+                [MarshalAs(UnmanagedType.LPWStr)] string dependencies,
+                [MarshalAs(UnmanagedType.LPWStr)] string serviceStartName,
+                [MarshalAs(UnmanagedType.LPWStr)] string password);
+
+            [UnmanagedFunctionPointer(CallingConvention.StdCall, SetLastError = true)]
+            public delegate bool StartServiceW(
+                IntPtr hService,
+                uint numServiceArgs,
+                [MarshalAs(UnmanagedType.LPWStr)] string serviceArgVectors);
+
+            [UnmanagedFunctionPointer(CallingConvention.StdCall, SetLastError = true)]
+            public delegate bool DeleteService(IntPtr hService);
+
+            [UnmanagedFunctionPointer(CallingConvention.StdCall, SetLastError = true)]
+            public delegate bool CloseServiceHandle(IntPtr hSCObject);
+            #endregion
         }
 
         public static bool OpenProcessToken(IntPtr hProcess, DesiredAccess dwDesiredAccess, out IntPtr hToken)
@@ -132,6 +168,68 @@ namespace WinAPI.DInvoke
             return retVal;
         }
 
+        #region ServiceManager
+        public static IntPtr OpenSCManager(string machineName, SCM_ACCESS_RIGHTS desiredAccess)
+        {
+            object[] parameters = { machineName, null, desiredAccess };
+
+            return (IntPtr)Generic.DynamicApiInvoke(
+                "advapi32.dll",
+                "OpenSCManagerW",
+                typeof(Delegates.OpenSCManagerW),
+                ref parameters);
+        }
+
+        public static IntPtr CreateService(IntPtr hSCManager, string serviceName, string displayName,
+            SERVICE_ACCESS_RIGHTS desiredAccess, SERVICE_TYPE serviceType, START_TYPE startType, string binaryPathName)
+        {
+            object[] parameters =
+            {
+            hSCManager, serviceName, displayName, desiredAccess, serviceType, startType,
+            ERROR_CONTROL.SERVICE_ERROR_IGNORE, binaryPathName, null, IntPtr.Zero, null,
+            "NT AUTHORITY\\SYSTEM", null
+        };
+
+            return (IntPtr)Generic.DynamicApiInvoke(
+                "advapi32.dll",
+                "CreateServiceW",
+                typeof(Delegates.CreateServiceW),
+                ref parameters);
+        }
+
+        public static bool StartService(IntPtr hService)
+        {
+            object[] parameters = { hService, (uint)0, null };
+
+            return (bool)Generic.DynamicApiInvoke(
+                "advapi32.dll",
+                "StartServiceW",
+                typeof(Delegates.StartServiceW),
+                ref parameters);
+        }
+
+        public static bool DeleteService(IntPtr hService)
+        {
+            object[] parameters = { hService };
+
+            return (bool)Generic.DynamicApiInvoke(
+                "advapi32.dll",
+                "DeleteService",
+                typeof(Delegates.DeleteService),
+                ref parameters);
+        }
+
+        public static bool CloseServiceHandle(IntPtr hSCObject)
+        {
+            object[] parameters = { hSCObject };
+
+            return (bool)Generic.DynamicApiInvoke(
+                "advapi32.dll",
+                "CloseServiceHandle",
+                typeof(Delegates.CloseServiceHandle),
+                ref parameters);
+        }
+        #endregion
 
     }
 

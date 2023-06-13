@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -96,7 +97,7 @@ namespace WinAPI.PInvoke
                     tSec.nLength = Marshal.SizeOf(tSec);
 
                     if (!Kernel32.CreateProcessW(parms.Application, parms.Command, ref pSec, ref tSec, parms.RedirectOutput, (uint)creationFlags, IntPtr.Zero, parms.CurrentDirectory, ref startupInfoEx, out pInfo))
-                        throw new InvalidOperationException($"Error in CreateProcessW : {Marshal.GetLastWin32Error()}");
+                        throw new Win32Exception($"Error in CreateProcessW : {Marshal.GetLastWin32Error()}");
                 }
 
                 result.ProcessHandle = pInfo.hProcess;

@@ -7,3 +7,4 @@ E:\Share\Projects\CSharp\OffensiveWinAPI\Run\obj\Release\Run.csproj.CoreCompileI
 E:\Share\Projects\CSharp\OffensiveWinAPI\Run\obj\Release\Run.csproj.CopyComplete
 E:\Share\Projects\CSharp\OffensiveWinAPI\Run\obj\Release\Run.exe
 E:\Share\Projects\CSharp\OffensiveWinAPI\Run\obj\Release\Run.pdb
+E:\Share\Projects\CSharp\OffensiveWinAPI\Run\obj\Release\Run.csproj.AssemblyReference.cache

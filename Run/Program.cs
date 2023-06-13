@@ -28,7 +28,7 @@ namespace Run
                 {
                     Console.WriteLine($"Usage: {GetRunningExeName()} cmd");
                     return;
-                    //cmd = "whoami /groups";
+                    //cmd = @"c:\windows\system32\cmd.exe /c whoami /groups > c:\windows\tasks\tst.txt";
                 }
                 else
                     cmd = args[0];
@@ -44,9 +44,6 @@ namespace Run
                     RedirectOutput = true,
                     CreateNoWindow = true,
                 };
-
-
-
 
                 Console.WriteLine($"[>] Executing {cmd}...");
                 procResult = APIWrapper.CreateProcess(creationParms);
