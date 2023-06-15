@@ -20,7 +20,7 @@ namespace RunAs
 
         static void Main(string[] args)
         {
-            APIWrapper.Config.PreferedAccessType = WinAPI.Wrapper.APIAccessType.DInvoke;
+            APIWrapper.Config.PreferedAccessType = WinAPI.Wrapper.APIAccessType.PInvoke;
 
             string cmd = null;
             string domain = null;

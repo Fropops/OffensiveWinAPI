@@ -12,7 +12,8 @@ namespace TestForBlog
         static void Main(string[] args)
         {
             //CreateProcess.Run();
-            CreateProcessWithOutput.Run();
+            //CreateProcessWithOutput.Run();
+            CreateProcessWithOutputImpersonated.Run();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
