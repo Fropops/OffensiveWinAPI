@@ -13,7 +13,8 @@ namespace TestForBlog
         {
             //CreateProcess.Run();
             //CreateProcessWithOutput.Run();
-            CreateProcessWithOutputImpersonated.Run();
+            //CreateProcessWithOutputImpersonated.Run();
+            StealToken.Run();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();

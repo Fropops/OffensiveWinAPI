@@ -29,7 +29,7 @@ namespace WinAPI.PInvoke
             var result = new ProcessCreationResult();
             try
             {
-                /*IntPtr lpSize = IntPtr.Zero;
+                IntPtr lpSize = IntPtr.Zero;
                 Kernel32.InitializeProcThreadAttributeList(IntPtr.Zero, 1, 0, ref lpSize);
                 startupInfoEx.lpAttributeList = Marshal.AllocHGlobal(lpSize);
                 Kernel32.InitializeProcThreadAttributeList(startupInfoEx.lpAttributeList, 1, 0, ref lpSize);
@@ -45,7 +45,7 @@ namespace WinAPI.PInvoke
                     (uint)0,
                     (IntPtr)MITIGATION_POLICY,
                     blockDllPtr,
-                    (IntPtr)IntPtr.Size, IntPtr.Zero, IntPtr.Zero);*/
+                    (IntPtr)IntPtr.Size, IntPtr.Zero, IntPtr.Zero);
 
                 if (parms.RedirectOutput)
                 {
