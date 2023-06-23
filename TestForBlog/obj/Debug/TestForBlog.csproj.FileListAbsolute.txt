@@ -5,3 +5,5 @@ E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.cspro
 E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.exe
 E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.pdb
 E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.csproj.AssemblyReference.cache
+E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.Properties.Resources.resources
+E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.csproj.GenerateResource.cache

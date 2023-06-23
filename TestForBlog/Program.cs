@@ -14,7 +14,8 @@ namespace TestForBlog
             //CreateProcess.Run();
             //CreateProcessWithOutput.Run();
             //CreateProcessWithOutputImpersonated.Run();
-            StealToken.Run();
+            //StealToken.Run();
+            Injection.Run();
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
