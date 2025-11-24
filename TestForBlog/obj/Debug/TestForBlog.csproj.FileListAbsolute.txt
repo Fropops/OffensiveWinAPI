@@ -1,9 +1,0 @@
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\bin\Debug\TestForBlog.exe.config
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\bin\Debug\TestForBlog.exe
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\bin\Debug\TestForBlog.pdb
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.csproj.CoreCompileInputs.cache
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.exe
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.pdb
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.csproj.AssemblyReference.cache
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.Properties.Resources.resources
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Debug\TestForBlog.csproj.GenerateResource.cache

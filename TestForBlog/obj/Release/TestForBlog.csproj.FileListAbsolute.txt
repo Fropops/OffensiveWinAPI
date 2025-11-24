@@ -1,7 +1,0 @@
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\bin\Release\TestForBlog.exe.config
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\bin\Release\TestForBlog.exe
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\bin\Release\TestForBlog.pdb
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Release\TestForBlog.csproj.AssemblyReference.cache
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Release\TestForBlog.csproj.CoreCompileInputs.cache
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Release\TestForBlog.exe
-E:\Share\Projects\CSharp\OffensiveWinAPI\TestForBlog\obj\Release\TestForBlog.pdb

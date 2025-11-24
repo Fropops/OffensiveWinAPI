@@ -35,17 +35,17 @@ namespace WinAPI
                 return DInvoke.Wrapper.CreateProcess(parms);
         }
 
-        public static string ReadPipeToEnd(int processId, IntPtr pipeHandle, Action<string> callback = null, uint buffSize = 1024)
+        public static string ReadPipeToEnd(IntPtr pipeHandle, Action<string> callback = null, uint buffSize = 1024)
         {
             string output = string.Empty;
             string chunck = string.Empty;
-            var process = System.Diagnostics.Process.GetProcessById(processId);
-            if (process == null)
-                return output;
+            //var process = System.Diagnostics.Process.GetProcessById(processId);
+            //if (process == null)
+            //    return output;
 
 
             byte[] b = null;
-            while (!process.HasExited)
+            /*while (!process.HasExited)
             {
                 if (Config.PreferedAccessType == APIAccessType.PInvoke)
                     b = PInvoke.Wrapper.ReadFromPipe(pipeHandle, buffSize);
@@ -61,15 +61,30 @@ namespace WinAPI
                 Thread.Sleep(100);
             }
 
-            if (Config.PreferedAccessType == APIAccessType.PInvoke)
-                b = PInvoke.Wrapper.ReadFromPipe(pipeHandle, buffSize);
-            else
-                b = DInvoke.Wrapper.ReadFromPipe(pipeHandle, buffSize);
+           
             if (b != null)
             {
                 chunck = Encoding.UTF8.GetString(b);
                 output += chunck;
                 callback?.Invoke(chunck);
+            }*/
+
+            //while (!process.HasExited)
+            while (true)
+            {
+                if (Config.PreferedAccessType == APIAccessType.PInvoke)
+                    b = PInvoke.Wrapper.ReadFromPipe(pipeHandle, buffSize);
+                else
+                    b = DInvoke.Wrapper.ReadFromPipe(pipeHandle, buffSize); ;
+                if (b != null)
+                {
+                    chunck = Encoding.UTF8.GetString(b);
+                    output += chunck;
+                    callback?.Invoke(chunck);
+                }
+                else
+                    break;
+                Thread.Sleep(50);
             }
 
             return output;

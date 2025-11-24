@@ -65,8 +65,9 @@ namespace RunToken
 
                 if (procResult.ProcessId != 0 && creationParms.RedirectOutput)
                 {
+                    var process = Process.GetProcessById(procResult.ProcessId);
                     Console.WriteLine("[+] Result :");
-                    APIWrapper.ReadPipeToEnd(procResult.ProcessId, procResult.OutPipeHandle, output => Console.Write(output));
+                    APIWrapper.ReadPipeToEnd(procResult.OutPipeHandle, output => Console.Write(output));
                 }
             }
             catch (Exception ex)
