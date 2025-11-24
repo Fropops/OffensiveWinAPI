@@ -52,6 +52,7 @@
     <Compile Include="APIWrapper.cs" />
     <Compile Include="Data\AdvApi.cs" />
     <Compile Include="Data\Kernel32.cs" />
+    <Compile Include="Data\PE.cs" />
     <Compile Include="DInvoke\DInvoke.Advapi.cs" />
     <Compile Include="DInvoke\DInvoke.Data.Native.cs" />
     <Compile Include="DInvoke\DInvoke.Data.PE.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="DInvoke\DInvoke.Kernel32.cs" />
     <Compile Include="DInvoke\DInvoke.Native.cs" />
     <Compile Include="DInvoke\DInvoke.Utilities.cs" />
+    <Compile Include="Helper\ReflectiveLoaderHelper.cs" />
     <Compile Include="Pinvoke\Advapi.cs" />
     <Compile Include="Pinvoke\Kernel32.cs" />
     <Compile Include="Pinvoke\Native.cs" />

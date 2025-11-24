@@ -90,7 +90,7 @@ namespace WinAPI
             return output;
         }
 
-        public static void Inject(IntPtr processHandle, IntPtr threadHandle, byte[] shellcode, InjectionMethod? injectMethod = null)
+        public static void Inject(IntPtr processHandle, IntPtr threadHandle, byte[] shellcode, uint entrypointOffset = 0, InjectionMethod? injectMethod = null)
         {
             if (injectMethod == null)
                 injectMethod = Config.PreferedInjectionMethod;
@@ -98,15 +98,15 @@ namespace WinAPI
             {
                 case InjectionMethod.CreateRemoteThread:
                     if (Config.PreferedAccessType == APIAccessType.PInvoke)
-                        PInvoke.Wrapper.InjectCreateRemoteThread(processHandle, threadHandle, shellcode);
+                        PInvoke.Wrapper.InjectCreateRemoteThread(processHandle, threadHandle, shellcode, (int)entrypointOffset);
                     else
-                        DInvoke.Wrapper.InjectCreateRemoteThread(processHandle, threadHandle, shellcode);
+                        DInvoke.Wrapper.InjectCreateRemoteThread(processHandle, threadHandle, shellcode, (int)entrypointOffset);
                     return;
                 case InjectionMethod.ProcessHollowingWithAPC:
                     if (Config.PreferedAccessType == APIAccessType.PInvoke)
-                        PInvoke.Wrapper.InjectProcessHollowingWithAPC(processHandle, threadHandle, shellcode);
+                        PInvoke.Wrapper.InjectProcessHollowingWithAPC(processHandle, threadHandle, shellcode, (int)entrypointOffset);
                     else
-                        DInvoke.Wrapper.InjectProcessHollowingWithAPC(processHandle, threadHandle, shellcode);
+                        DInvoke.Wrapper.InjectProcessHollowingWithAPC(processHandle, threadHandle, shellcode, (int)entrypointOffset);
                     return;
             }
         }
