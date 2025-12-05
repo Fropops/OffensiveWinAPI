@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WinAPI.Data.AdvApi;
 using WinAPI.Data.Kernel32;
 using WinAPI.Wrapper;
+using static WinAPI.DInvoke.Data.Native;
 
 namespace WinAPI.DInvoke
 {
@@ -79,7 +80,7 @@ namespace WinAPI.DInvoke
                     if (!Advapi.CreateProcessWithLogonW(parms.Credentials.Username, parms.Credentials.Domain, parms.Credentials.Password, LogonFlags.LogonWithProfile, parms.Application, parms.Command, creationFlags, IntPtr.Zero, parms.CurrentDirectory, ref startupInfoEx, out pInfo))
                         throw new InvalidOperationException($"Error in CreateProcessWithLogonW : {Marshal.GetLastWin32Error()}");
                 }
-                else if(parms.Token != IntPtr.Zero)
+                else if (parms.Token != IntPtr.Zero)
                 {
 
                     if (!Advapi.CreateProcessWithTokenW(parms.Token, LogonFlags.LogonWithProfile, parms.Application, parms.Command, creationFlags, IntPtr.Zero, parms.CurrentDirectory, ref startupInfoEx, out pInfo))
@@ -260,6 +261,12 @@ namespace WinAPI.DInvoke
             IntPtr.Zero);
 
             _ = Native.NtResumeThread(threadHandle);
+        }
+
+
+        public static IntPtr OpenProcess(uint processId, ProcessAccessFlags desiredAccess)
+        {
+            return Native.NtOpenProcess(processId, desiredAccess);
         }
     }
 }

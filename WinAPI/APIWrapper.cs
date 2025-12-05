@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WinAPI.Data.Kernel32;
 using WinAPI.Wrapper;
 
 namespace WinAPI
@@ -12,7 +13,7 @@ namespace WinAPI
     public class APIWrapperConfig
     {
         public APIAccessType PreferedAccessType { get; set; } = APIAccessType.DInvoke;
-        public InjectionMethod PreferedInjectionMethod { get; set; } = InjectionMethod.ProcessHollowingWithAPC;
+        public InjectionMethod PreferedInjectionMethod { get; set; } = InjectionMethod.CreateRemoteThread;
     }
 
     public class APIWrapper
@@ -33,6 +34,14 @@ namespace WinAPI
                 return PInvoke.Wrapper.CreateProcess(parms);
             else
                 return DInvoke.Wrapper.CreateProcess(parms);
+        }
+
+        public static IntPtr OpenProcess(int processId, ProcessAccessFlags desiredAccess)
+        {
+            if (Config.PreferedAccessType == APIAccessType.PInvoke)
+                return PInvoke.Wrapper.OpenProcess((uint)processId, desiredAccess);
+            else
+                return DInvoke.Wrapper.OpenProcess((uint)processId, desiredAccess);
         }
 
         public static string ReadPipeToEnd(IntPtr pipeHandle, Action<string> callback = null, uint buffSize = 1024)

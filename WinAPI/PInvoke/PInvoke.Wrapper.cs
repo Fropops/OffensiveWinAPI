@@ -10,6 +10,8 @@ using WinAPI.Data.AdvApi;
 using WinAPI.Data.Kernel32;
 using WinAPI.PInvoke;
 using WinAPI.Wrapper;
+using static WinAPI.DInvoke.Data.Native;
+using static WinAPI.DInvoke.Kernel32;
 
 namespace WinAPI.PInvoke
 {
@@ -77,7 +79,7 @@ namespace WinAPI.PInvoke
                 if (parms.CreateNoWindow)
                     creationFlags |= PROCESS_CREATION_FLAGS.CREATE_NO_WINDOW;
 
-                if(parms.Credentials != null)
+                if (parms.Credentials != null)
                 {
                     if (!Advapi.CreateProcessWithLogonW(parms.Credentials.Username, parms.Credentials.Domain, parms.Credentials.Password, (uint)LogonFlags.LogonWithProfile, parms.Application, parms.Command, (uint)creationFlags, IntPtr.Zero, parms.CurrentDirectory, ref startupInfoEx, out pInfo))
                         throw new InvalidOperationException($"Error in CreateProcessWithLogonW : {Marshal.GetLastWin32Error()}");
@@ -277,6 +279,23 @@ namespace WinAPI.PInvoke
 
             UInt32 prev = 0;
             _ = Native.NtResumeThread(threadHandle, ref prev);
+        }
+
+
+        public static IntPtr OpenProcess(uint processId, ProcessAccessFlags desiredAccess)
+        {
+            IntPtr hProcess;
+            var oa = new OBJECT_ATTRIBUTES();
+            var clientId = new CLIENT_ID { UniqueProcess = (IntPtr)processId };
+
+            _ = Native.NtOpenProcess(
+                out hProcess,
+                desiredAccess,
+                ref oa,
+                ref clientId
+            );
+
+            return hProcess;
         }
     }
 }

